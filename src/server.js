@@ -2,7 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3333;
 app.listen(PORT, console.log(`Server is running on port ${PORT}`));
-app.use(express.json());
+app.use(express.json()); //determina o padrão a ser utilizado no corpo das requisições
 
 //ROUTE PARAMS
 //são OBRIGATóRIOS no endereço da rota
@@ -23,12 +23,15 @@ app.get(`/message/:id/:user`, (request, response) => {
 app.get(`/users`, (request, response) => {
     const { pages, limit } = request.query;
 
-    response.send(`Page: ${pages}. ShowLimit: ${limit}`)
+    // o padrão utilizado para devolver como resposta é em JSON
+    response.json({ pages, limit });
+    // response.send(`Page: ${pages}. ShowLimit: ${limit}`)
 })
 
 //POST e INSOMNIA
 app.post('/user', (request, response) => {
     const { name, email, password } = request.body;
     
-    response.send(`User: ${name} // Email: ${email} // Password: ${password}`);
+    response.json({ name, email, password }); //enviar a resposta em formato JSON
+    // response.send(`User: ${name} // Email: ${email} // Password: ${password}`); //envia a resposta num formato meio que html
 }) 
