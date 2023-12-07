@@ -22,5 +22,5 @@ app.get(`/message/:id/:user`, (request, response) => {
 app.get(`/users`, (request, response) => {
     const { pages, limit } = request.query;
 
-    response.send(`Página: ${pages}. Mostrar: ${limit}`)
+    response.send(`Page: ${pages}. ShowLimit: ${limit}`)
 })
