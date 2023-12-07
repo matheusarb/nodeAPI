@@ -14,11 +14,6 @@ app.use(routes);
 
 
 
-
-
-
-
-
 //ROUTE PARAMS
 //são OBRIGATóRIOS no endereço da rota
 //1º argumento: rota/endereço; 2º argumento: função

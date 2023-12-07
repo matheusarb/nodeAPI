@@ -1,8 +1,8 @@
 const { Router } = require("express");
 const routes = Router();
 
-const usersRoutes = require("./users.route");
-const addressroutes = require("./address.route");
+const usersRoutes = require("./users.routes");
+const addressroutes = require("./address.routes");
 
 routes.use("/users", usersRoutes);
 routes.use("/address", addressroutes);
