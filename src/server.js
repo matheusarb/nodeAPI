@@ -2,6 +2,7 @@ const express = require("express");
 const app = express();
 const PORT = 3333;
 app.listen(PORT, console.log(`Server is running on port ${PORT}`));
+app.use(express.json());
 
 //ROUTE PARAMS
 //são OBRIGATóRIOS no endereço da rota
@@ -24,3 +25,10 @@ app.get(`/users`, (request, response) => {
 
     response.send(`Page: ${pages}. ShowLimit: ${limit}`)
 })
+
+//POST e INSOMNIA
+app.post('/user', (request, response) => {
+    const { name, email, password } = request.body;
+    
+    response.send(`User: ${name} // Email: ${email} // Password: ${password}`);
+}) 
