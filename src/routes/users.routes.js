@@ -12,7 +12,7 @@ function myMiddleware(request, response, next) {
     console.log("Você passou pelo middleware!");
     if (!request.body.isAdmin ||  request.body.isAdmin == null) {
         return response.json({ message: "User unauthorized." })
-    }    
+    }
     next();
 }
 
