@@ -9,7 +9,6 @@ const usersController = new UsersController(); //criando instância da classe
 // usersRoutes.use(myMiddleware);
 
 function myMiddleware(request, response, next) {
-    console.log("Você passou pelo middleware!");
     if (!request.body.isAdmin ||  request.body.isAdmin == null) {
         return response.json({ message: "User unauthorized." })
     }
