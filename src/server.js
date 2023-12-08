@@ -1,5 +1,5 @@
 require("express-async-errors");
-
+const database = require("./database/sqlite");
 const AppError = require("./utils/AppError");
 
 const express = require("express"); //importando o express
@@ -9,6 +9,9 @@ const routes = require("./routes"); //por padrão ele carrega o arquivo da pági
 const app = express(); //inicializando o express
 app.use(express.json()); //determina o padrão a ser utilizado no corpo das requisições
 app.use(routes);
+
+database();
+
 
 app.use(( error, request, response, next ) => {
     if (error instanceof AppError) {
@@ -28,6 +31,22 @@ app.use(( error, request, response, next ) => {
 
 const PORT = 3333;
 app.listen(PORT, console.log(`Server is running on port ${PORT}`));
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
