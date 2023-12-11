@@ -8,15 +8,16 @@ const usersController = new UsersController(); //criando instância da classe
 //posso passar o middleware para TODAS as rotas de usuário (ou qualquer outra)
 // usersRoutes.use(myMiddleware);
 
-function myMiddleware(request, response, next) {
-    if (!request.body.isAdmin ||  request.body.isAdmin == null) {
-        return response.json({ message: "User unauthorized." })
-    }
-    next();
-}
-
 //POST, INSOMNIA, MIDDLEWARES
-usersRoutes.post('/', myMiddleware, usersController.create);
+// function myMiddleware(request, response, next) {
+//     if (!request.body.isAdmin ||  request.body.isAdmin == null) {
+//         return response.json({ message: "User unauthorized." })
+//     }
+//     next();
+// }
+// usersRoutes.post('/', myMiddleware, usersController.create2);
+
+usersRoutes.post('/', usersController.create2);
 
 //exportar o usersRoutes ao server.js
 module.exports = usersRoutes;
