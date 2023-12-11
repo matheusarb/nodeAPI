@@ -1,16 +1,17 @@
 require("express-async-errors");
-const database = require("./database/sqlite");
+const migrationsRun = require("./database/sqlite/migrations");
 const AppError = require("./utils/AppError");
 
 const express = require("express"); //importando o express
 
 const routes = require("./routes"); //por padrão ele carrega o arquivo da página com o nome "index". Por isso não precisamos declarar
 
+migrationsRun();
+
 const app = express(); //inicializando o express
 app.use(express.json()); //determina o padrão a ser utilizado no corpo das requisições
-app.use(routes);
 
-database();
+app.use(routes);
 
 
 app.use(( error, request, response, next ) => {
