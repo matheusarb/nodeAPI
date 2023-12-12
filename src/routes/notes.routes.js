@@ -6,6 +6,7 @@ const notesRoutes = Router(); //inicializando a função de rotear
 const notesController = new NotesController(); //criando instância da classe
 
 notesRoutes.post('/:user_id', notesController.create);
+notesRoutes.get('/:id', notesController.show);
 
 //exportar o usersRoutes ao server.js
 module.exports = notesRoutes;
