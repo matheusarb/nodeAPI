@@ -2,12 +2,20 @@ const knex = require("../database/knex");
 // const { link } = require("../routes/notes.routes");
 
 class NotesController {
-    async showAllUserNotes(request, response) {
-        const { user_id } = request.query;
-        
-        const userNotes = await knex("notes")
-            .where({ user_id })
-            .orderBy("title");        
+    async showFilteredUserNotes(request, response) {
+        const { title, tags, user_id } = request.query;        
+        let userNotes;
+
+        if(tags) {
+            const filteredTags = tags.split(',').map(tag=>tag.trim());
+            userNotes = await knex("tags")
+                .whereIn("name", filteredTags);
+        } else {
+            userNotes = await knex("notes")
+                .where({ user_id })
+                .whereLike("title", `%${title}%`)
+                .orderBy("title");
+        }
 
         return response.json(userNotes);
     }

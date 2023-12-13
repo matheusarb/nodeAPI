@@ -5,10 +5,11 @@ const NotesController = require("../controllers/NotesController"); //importando 
 const notesRoutes = Router(); //inicializando a função de rotear
 const notesController = new NotesController(); //criando instância da classe
 
-notesRoutes.post('/:user_id', notesController.create);
 notesRoutes.get('/:id', notesController.show);
+notesRoutes.get('/', notesController.showFilteredUserNotes);
 
-notesRoutes.get('/', notesController.showAllUserNotes);
+notesRoutes.post('/:user_id', notesController.create);
+
 notesRoutes.delete('/:id', notesController.delete);
 
 //exportar o usersRoutes ao server.js
