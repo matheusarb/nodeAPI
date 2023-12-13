@@ -7,9 +7,18 @@ class NotesController {
         let userNotes;
 
         if(tags) {
-            const filteredTags = tags.split(',').map(tag=>tag.trim());
+            const filteredTags = tags.split(',').map(tag => tag.trim());
             userNotes = await knex("tags")
-                .whereIn("name", filteredTags);
+                .select([
+                    "notes.id",
+                    "notes.title",
+                    "notes.user_id"
+                ])
+                .where("notes.user_id", user_id)
+                .whereLike("notes.title", `%${title}%`)                
+                .whereIn("name", filteredTags)
+                .innerJoin("notes", "notes.id", "tags.note_id")
+                .orderBy("notes.title");
         } else {
             userNotes = await knex("notes")
                 .where({ user_id })
