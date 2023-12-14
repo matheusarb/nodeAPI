@@ -38,7 +38,7 @@ class UsersController {
             [ name, email, hashedPassword ]
         );
 
-        return response.status(201).json({ "msg": "Usuário cadastrado" });
+        return response.status(201).json({ "message": "Usuário cadastrado" });
     }
 
     async update(request, response) {
