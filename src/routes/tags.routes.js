@@ -3,6 +3,6 @@ const TagsController = require("../controllers/TagsController");
 const tagsRoutes = new Router();
 const tagsController = new TagsController();
 
-tagsRoutes.get('/:id', tagsController.show);
+tagsRoutes.get('/:user_id', tagsController.show);
 
 module.exports = tagsRoutes;
